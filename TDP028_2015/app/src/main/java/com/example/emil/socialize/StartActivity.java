@@ -3,11 +3,15 @@ package com.example.emil.socialize;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,7 +22,7 @@ import com.parse.SignUpCallback;
 
 import bolts.Task;
 
-public class StartActivity extends Activity implements View.OnClickListener {
+public class StartActivity extends Activity implements View.OnClickListener, View.OnKeyListener {
 
     EditText usernameField;
     EditText passwordField;
@@ -26,8 +30,33 @@ public class StartActivity extends Activity implements View.OnClickListener {
     EditText nameField;
     Button signUpButton;
     TextView changeMode;
+    RelativeLayout relativeLayout;
+    ImageView logo;
 
     Boolean signUpMode;
+
+    @Override
+    public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+        if(signUpMode == true && v.getId() == R.id.email) {
+
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
+
+                signUpOrLogin(v);
+
+            }
+
+        } else if(signUpMode == false && v.getId() == R.id.password ) {
+
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
+
+                signUpOrLogin(v);
+
+            }
+
+        }
+        return false;
+    }
 
     @Override
     public void onClick(View v) {
@@ -52,7 +81,18 @@ public class StartActivity extends Activity implements View.OnClickListener {
                 nameField.setVisibility(View.VISIBLE);
 
 
+
+
+
+
             }
+
+
+
+        }  else if (v.getId() == R.id.logo || v.getId() == R.id.relativeLayout) {
+
+            InputMethodManager inm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            inm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
 
         }
 
@@ -143,8 +183,15 @@ public class StartActivity extends Activity implements View.OnClickListener {
         emailField.setVisibility(View.INVISIBLE);
         nameField.setVisibility(View.INVISIBLE);
         signUpMode = false;
+        relativeLayout = (RelativeLayout)findViewById(R.id.relativeLayout);
+        logo = (ImageView) findViewById(R.id.logo);
 
         changeMode.setOnClickListener(this);
+        logo.setOnClickListener(this);
+        relativeLayout.setOnClickListener(this);
+
+        passwordField.setOnKeyListener(this);
+        emailField.setOnKeyListener(this);
 
     }
 
@@ -169,6 +216,5 @@ public class StartActivity extends Activity implements View.OnClickListener {
 
         return super.onOptionsItemSelected(item);
     }
-
 
 }
