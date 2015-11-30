@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Socialize</string>
+<<<<<<< HEAD
 
     <string name="hello_world">Hello world!</string>
+=======
+>>>>>>> fa1e49070decd9f86c92312af2997897f16abe96
     <string name="action_settings">Settings</string>
 </resources>
