@@ -1,6 +1,7 @@
 package com.example.emil.socialize;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -34,6 +35,13 @@ public class StartActivity extends Activity implements View.OnClickListener, Vie
     ImageView logo;
 
     Boolean signUpMode;
+
+    public void redirectLoggedIn() {
+
+        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(i);
+
+    }
 
     @Override
     public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -130,6 +138,7 @@ public class StartActivity extends Activity implements View.OnClickListener, Vie
                     if (e == null) {
 
                         Log.i("AppInfo", "Signup successful");
+                        redirectLoggedIn();
 
                     } else {
 
@@ -146,7 +155,9 @@ public class StartActivity extends Activity implements View.OnClickListener, Vie
                 public void done(ParseUser user, ParseException e) {
                     if(user != null) {
 
+
                         Log.i("AppInfo", "Login successful");
+                        redirectLoggedIn();
 
                     } else {
 
@@ -167,6 +178,12 @@ public class StartActivity extends Activity implements View.OnClickListener, Vie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+
+        if(ParseUser.getCurrentUser() != null) {
+
+            redirectLoggedIn();
+
+        }
 
         /*ParseObject testObject = new ParseObject("TestObject");
         testObject.put("foo", "bar");
@@ -210,9 +227,9 @@ public class StartActivity extends Activity implements View.OnClickListener, Vie
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+       /* if (id == R.id.action_settings) {
             return true;
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }

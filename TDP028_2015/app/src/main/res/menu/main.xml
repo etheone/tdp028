@@ -1,8 +1,28 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.emil.socialize.MainActivity">
+
+    <item
+        android:id="@+id/activitiesOptions"
+        android:visible="true"
+        android:title="List"
+        android:icon="@android:drawable/ic_dialog_map"
+        android:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/showMap"
+                android:title="Show on map" />
+            <item
+                android:id="@+id/showList"
+                android:title="Show as list" />
+        </menu>
+    </item>
+
+<item android:id="@+id/action_create" android:title="@string/action_example"
+        android:icon="@android:drawable/ic_input_add" android:showAsAction="always" />
     <item android:id="@+id/action_example" android:title="@string/action_example"
-        android:showAsAction="withText|ifRoom" />
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" android:showAsAction="never" />
+        android:icon="@android:drawable/ic_search_category_default" android:showAsAction="always" />
+
+   <!-- <item android:id="@+id/action_settings" android:title="@string/action_settings"
+        android:orderInCategory="100" android:showAsAction="never" />-->
 </menu>
