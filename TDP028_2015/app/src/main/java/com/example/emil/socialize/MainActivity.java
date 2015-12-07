@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -21,12 +22,23 @@ import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 import com.parse.Parse;
 import com.parse.ParseUser;
 
-public class MainActivity extends Activity
-        implements HomeFragment.OnFragmentInteractionListener, ActivitiesFragmentList.OnFragmentInteractionListener, NavigationDrawerFragment.NavigationDrawerCallbacks {
+public class MainActivity extends FragmentActivity
+        implements MapsFragment.OnFragmentInteractionListener, HomeFragment.OnFragmentInteractionListener, ActivitiesFragmentList.OnFragmentInteractionListener, NavigationDrawerFragment.NavigationDrawerCallbacks {
 
+
+    //private GoogleMap mMap; // Might be null if Google Play services APK is not available.
+    private HomeFragment homeFragment;
+    private ActivitiesFragmentList listFragment;
+    private MapsFragment mapFragment;
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
@@ -37,11 +49,12 @@ public class MainActivity extends Activity
      */
     private CharSequence mTitle;
 
+    private boolean mapsView = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = "Home";
@@ -50,20 +63,92 @@ public class MainActivity extends Activity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        if (savedInstanceState == null) {
+            homeFragment = new HomeFragment();
+            listFragment = new ActivitiesFragmentList();
+            mapFragment = new MapsFragment();
+
+        }
+
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.container, homeFragment)
+                .commit();
+
+      /*  if(mapsview == true) {
+
+            setUpMapIfNeeded();
+
+        }*/
+
     }
+
+/*    @Override
+    protected void onResume() {
+        super.onResume();
+        setUpMapIfNeeded();
+    }*/
+
+    /**
+     * Sets up the map if it is possible to do so (i.e., the Google Play services APK is correctly
+     * installed) and the map has not already been instantiated.. This will ensure that we only ever
+     * call {@link #setUpMap()} once when {@link #mMap} is not null.
+     * <p/>
+     * If it isn't installed {@link SupportMapFragment} (and
+     * {@link com.google.android.gms.maps.MapView MapView}) will show a prompt for the user to
+     * install/update the Google Play services APK on their device.
+     * <p/>
+     * A user can return to this FragmentActivity after following the prompt and correctly
+     * installing/updating/enabling the Google Play services. Since the FragmentActivity may not
+     * have been completely destroyed during this process (it is likely that it would only be
+     * stopped or paused), {@link #onCreate(Bundle)} may not be called again so we should call this
+     * method in {@link #onResume()} to guarantee that it will be called.
+     */
+  /*  private void setUpMapIfNeeded() {
+        // Do a null check to confirm that we have not already instantiated the map.
+        if (mMap == null) {
+            // Try to obtain the map from the SupportMapFragment.
+            mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
+                    .getMap();
+            // Check if we were successful in obtaining the map.
+            if (mMap != null) {
+                setUpMap();
+            }
+        }
+    }
+*/
+    /**
+     * This is where we can add markers or lines, add listeners or move the camera. In this case, we
+     * just add a marker near Africa.
+     * <p/>
+     * This should only be called once and when we are sure that {@link #mMap} is not null.
+     */
+   /* private void setUpMap() {
+        mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
+    }*/
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
         Fragment selectedFragment = null;
+        MapsFragment selectedMapFragment = null;
+        Boolean map = false;
         Log.i("AppInfo", String.valueOf(position));
         switch(position) {
 
             case 0:
-                selectedFragment = new HomeFragment();
+                selectedFragment = homeFragment;
                 break;
             case 1:
-                selectedFragment = new ActivitiesFragmentList();
+                if(mapsView) {
+                    selectedMapFragment = mapFragment;
+                    map = true;
+
+                } else {
+                    selectedFragment = listFragment;
+
+                }
                 break;
             case 2:
                 ParseUser.logOut();
@@ -73,11 +158,21 @@ public class MainActivity extends Activity
 
         }
         if(selectedFragment != null) {
-            FragmentManager fragmentManager = getFragmentManager();
+          /*  FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction()
                     .replace(R.id.container, selectedFragment)
-                    .commit();
+                    .commit(); */
+            fragmentSwapper(selectedFragment);
             onSectionAttached(position + 1);
+        } else {
+
+            if(map) {
+
+                swapToMapFragment(selectedMapFragment);
+                onSectionAttached(position + 1);
+
+            }
+
         }
     }
 
@@ -123,12 +218,51 @@ public class MainActivity extends Activity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-       /* if (id == R.id.action_settings) {
-            return true;
-        }*/
+        switch (item.getItemId()) {
+            case R.id.showList:
 
+                    mapsView = false;
+                    fragmentSwapper(listFragment);
+
+                return true;
+            case R.id.showMap:
+
+
+                    mapsView = true;
+                    swapToMapFragment(mapFragment);
+
+
+                return true;
+        }
+       /* if(id == 2131558561) {
+
+            if(mapsView) {
+
+            } else {
+
+                mapsView = false;
+                fragmentSwapper(listFragment);
+
+            }
+            Log.i("AppInfo", "View as map clicked");
+
+        } else if( id ==  2131558562) {
+
+            if (mapsView) {
+
+                mapsView = false;
+                fragmentSwapper(mapFragment);
+
+            } else {
+
+            }
+        }*/
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void setCenterPos(LatLng centerPos) {
+        //this.centerPos = centerPos;
     }
 
     @Override
@@ -174,6 +308,47 @@ public class MainActivity extends Activity
             ((MainActivity) activity).onSectionAttached(
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
+    }
+
+    //My methods
+
+    public void fragmentSwapper(Fragment selectedFragment) {
+
+        FragmentManager fragmentManager = getFragmentManager();
+        hideMapFragment();
+        fragmentManager.beginTransaction()
+                .replace(R.id.container, selectedFragment)
+                .commit();
+
+    }
+
+    public void hideFragment() {
+
+        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .hide(mapFragment)
+                .commit();
+
+
+    }
+
+    public void hideMapFragment() {
+
+        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .hide(mapFragment)
+                .commit();
+
+    }
+
+    public void swapToMapFragment(MapsFragment selectedFragment) {
+
+        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .show(mapFragment)
+                .replace(R.id.container, selectedFragment)
+                .commit();
+
     }
 
 }
