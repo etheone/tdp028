@@ -39,6 +39,7 @@ public class MainActivity extends FragmentActivity
     private HomeFragment homeFragment;
     private ActivitiesFragmentList listFragment;
     private MapsFragment mapFragment;
+    Menu menu;
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
@@ -72,9 +73,11 @@ public class MainActivity extends FragmentActivity
         }
 
         FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, homeFragment)
-                .commit();
+        if(fragmentManager != null) {
+            fragmentManager.beginTransaction()
+                    .replace(R.id.container, homeFragment)
+                    .commit();
+        }
 
       /*  if(mapsview == true) {
 
@@ -138,15 +141,19 @@ public class MainActivity extends FragmentActivity
         switch(position) {
 
             case 0:
+                mapsView = false;
                 selectedFragment = homeFragment;
+                //changeMenu(false);
                 break;
             case 1:
                 if(mapsView) {
                     selectedMapFragment = mapFragment;
+                    //changeMenu(true);
                     map = true;
 
                 } else {
                     selectedFragment = listFragment;
+                    //changeMenu(true);
 
                 }
                 break;
@@ -197,9 +204,17 @@ public class MainActivity extends FragmentActivity
         actionBar.setTitle(mTitle);
     }
 
+    public void changeMenu(boolean showMenu){
+        if(menu == null)
+            return;
+        menu.setGroupVisible(R.id.main_menu_group, showMenu);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        this.menu = menu;
+        menu.setGroupVisible(R.id.main_menu_group, false);
         if (!mNavigationDrawerFragment.isDrawerOpen()) {
             // Only show items in the action bar relevant to this screen
             // if the drawer is not showing. Otherwise, let the drawer
@@ -221,42 +236,22 @@ public class MainActivity extends FragmentActivity
         switch (item.getItemId()) {
             case R.id.showList:
 
-                    mapsView = false;
-                    fragmentSwapper(listFragment);
+                mapsView = false;
+                fragmentSwapper(listFragment);
+                    //changeMenu(true);
 
                 return true;
             case R.id.showMap:
 
 
-                    mapsView = true;
-                    swapToMapFragment(mapFragment);
+                mapsView = true;
+                swapToMapFragment(mapFragment);
+                    //changeMenu(true);
 
 
                 return true;
         }
-       /* if(id == 2131558561) {
 
-            if(mapsView) {
-
-            } else {
-
-                mapsView = false;
-                fragmentSwapper(listFragment);
-
-            }
-            Log.i("AppInfo", "View as map clicked");
-
-        } else if( id ==  2131558562) {
-
-            if (mapsView) {
-
-                mapsView = false;
-                fragmentSwapper(mapFragment);
-
-            } else {
-
-            }
-        }*/
         return super.onOptionsItemSelected(item);
     }
 
@@ -310,13 +305,12 @@ public class MainActivity extends FragmentActivity
         }
     }
 
-    //My methods
-
     public void fragmentSwapper(Fragment selectedFragment) {
 
         FragmentManager fragmentManager = getFragmentManager();
         hideMapFragment();
         fragmentManager.beginTransaction()
+                .show(selectedFragment)
                 .replace(R.id.container, selectedFragment)
                 .commit();
 
@@ -324,9 +318,10 @@ public class MainActivity extends FragmentActivity
 
     public void hideFragment() {
 
-        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
-                .hide(mapFragment)
+                .hide(listFragment)
+                .hide(homeFragment)
                 .commit();
 
 
@@ -344,6 +339,7 @@ public class MainActivity extends FragmentActivity
     public void swapToMapFragment(MapsFragment selectedFragment) {
 
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+        hideFragment();
         fragmentManager.beginTransaction()
                 .show(mapFragment)
                 .replace(R.id.container, selectedFragment)
