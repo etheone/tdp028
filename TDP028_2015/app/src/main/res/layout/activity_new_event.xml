@@ -15,24 +15,29 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
+        android:id="@+id/title"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="20dp"
-        android:hint="Title" />
+        android:hint="Title"
+        android:focusable="true"
+        android:singleLine="true"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText2"
-        android:layout_below="@+id/editText"
+        android:id="@+id/location"
+        android:layout_below="@+id/title"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="20dp"
-        android:hint="Location" />
+        android:hint="Location"
+        android:focusable="true"
+        android:singleLine="true"
+        android:imeOptions="actionDone" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -40,7 +45,7 @@
         android:inputType="textWebEmailAddress|none"
         android:ems="10"
         android:id="@+id/dateStart"
-        android:layout_below="@+id/editText2"
+        android:layout_below="@+id/location"
         android:layout_alignParentStart="true"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="20dp"
@@ -48,7 +53,9 @@
         android:hint="Start date"
         android:linksClickable="false"
         android:focusable="false"
-        android:focusableInTouchMode="false"/>
+        android:nextFocusForward="@+id/timeStart"
+        android:imeOptions="actionNext"
+        />
 
     <EditText
         android:layout_width="wrap_content"
@@ -61,8 +68,10 @@
         android:layout_marginRight="15dp"
         android:onClick="selectTime"
         android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:hint="Start time" />
+        android:hint="Start time"
+        android:nextFocusForward="@+id/dateEnd"
+        android:imeOptions="actionNext"
+        />
 
     <EditText
         android:layout_width="wrap_content"
@@ -76,8 +85,10 @@
         android:layout_marginTop="20dp"
         android:onClick="selectDate"
         android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:hint="End date" />
+        android:hint="End date"
+        android:nextFocusForward="@+id/timeEnd"
+        android:imeOptions="actionNext"
+        />
 
     <EditText
         android:layout_width="wrap_content"
@@ -90,27 +101,33 @@
         android:layout_marginRight="15dp"
         android:onClick="selectTime"
         android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:hint="End time" />
+        android:hint="End time"
+        android:nextFocusForward="@+id/description"
+        android:imeOptions="actionNext"
+        />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText7"
+        android:id="@+id/description"
         android:layout_below="@+id/dateEnd"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="20dp"
-        android:hint="Description" />
+        android:hint="Description"
+        android:nextFocusForward="@+id/attendants"
+        android:imeOptions="actionNext"
+        android:singleLine="true"
+        />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
-        android:id="@+id/editText8"
-        android:layout_below="@+id/editText7"
+        android:id="@+id/attendants"
+        android:layout_below="@+id/description"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
@@ -120,9 +137,9 @@
     <Button
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="Done"
+        android:text="Create"
         android:id="@+id/button"
-        android:layout_below="@+id/editText8"
+        android:layout_below="@+id/attendants"
         android:layout_alignStart="@+id/scrollView"
         android:layout_marginTop="36dp"
         />
@@ -134,7 +151,8 @@
         android:id="@+id/button2"
         android:layout_alignTop="@+id/button"
         android:layout_toStartOf="@+id/button"
-        android:layout_margin="0dp" />
+        android:layout_margin="0dp"
+        />
 
 
 </RelativeLayout>

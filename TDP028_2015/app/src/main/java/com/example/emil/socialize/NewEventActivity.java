@@ -6,21 +6,28 @@ import android.app.TimePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.Time;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-public class NewEventActivity extends AppCompatActivity implements View.OnKeyListener {
+public class NewEventActivity extends AppCompatActivity {
 
     EditText dateStart;
     EditText dateEnd;
     EditText timeStart;
     EditText timeEnd;
+    EditText title;
+    EditText location;
+    EditText description;
+    EditText attendants;
+
     private int year, month, day;
     EditText currentField;
 
@@ -33,6 +40,10 @@ public class NewEventActivity extends AppCompatActivity implements View.OnKeyLis
         dateEnd = (EditText)findViewById(R.id.dateEnd);
         timeStart = (EditText)findViewById(R.id.timeStart);
         timeEnd = (EditText)findViewById(R.id.timeEnd);
+        title = (EditText)findViewById(R.id.title);
+        location = (EditText)findViewById(R.id.location);
+        description = (EditText)findViewById(R.id.description);
+        attendants = (EditText)findViewById(R.id.attendants);
 
     }
 
@@ -144,11 +155,6 @@ public class NewEventActivity extends AppCompatActivity implements View.OnKeyLis
 
     }
 
-    @Override
-    public boolean onKey(View v, int keyCode, KeyEvent event) {
-        
-        return false;
-    }
 
 
     /////////////// Datepicker
