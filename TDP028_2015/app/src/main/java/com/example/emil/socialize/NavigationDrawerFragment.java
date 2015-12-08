@@ -255,10 +255,10 @@ public class NavigationDrawerFragment extends Fragment {
             return true;
         }
 
-        if (item.getItemId() == R.id.action_create) {
+        /*if (item.getItemId() == R.id.action_create) {
             Toast.makeText(getActivity(), "Create new activity clicked", Toast.LENGTH_SHORT).show();
             return true;
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }

@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -250,6 +251,13 @@ public class MainActivity extends FragmentActivity
 
 
                 return true;
+        }
+
+        if (item.getItemId() == R.id.action_create) {
+            Intent i = new Intent(getApplicationContext(), NewEventActivity.class);
+            startActivity(i);
+           /* Toast.makeText(this, "Create new activity clicked", Toast.LENGTH_SHORT).show();
+            return true;*/
         }
 
         return super.onOptionsItemSelected(item);
