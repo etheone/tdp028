@@ -25,19 +25,20 @@
         android:focusable="true"
         android:singleLine="true"/>
 
-    <EditText
-        android:layout_width="match_parent"
+    <AutoCompleteTextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/location"
         android:layout_below="@+id/title"
-        android:layout_centerHorizontal="true"
+
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="20dp"
-        android:hint="Location"
-        android:focusable="true"
-        android:singleLine="true"
-        android:imeOptions="actionDone" />
+        android:layout_alignEnd="@+id/button"
+        android:layout_alignParentStart="true"
+        android:hint="Location" />
+
+
 
     <EditText
         android:layout_width="wrap_content"
@@ -153,6 +154,18 @@
         android:layout_toStartOf="@+id/button"
         android:layout_margin="0dp"
         />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Map"
+        android:id="@+id/button3"
+        android:layout_alignBottom="@+id/location"
+        android:layout_alignEnd="@+id/timeStart"
+        android:layout_toEndOf="@+id/location"
+        android:layout_below="@+id/title" />
+
 
 
 </RelativeLayout>

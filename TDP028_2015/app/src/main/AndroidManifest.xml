@@ -39,6 +39,9 @@
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="@string/google_maps_key" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCjqZM_IEeHMQ_Ry_5G2fzdcPgmPhifGTQ"/>
 
         <activity
             android:name=".NewEventActivity"
@@ -49,6 +52,7 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.emil.socialize.MainActivity" />
+
         </activity>
     </application>
 
