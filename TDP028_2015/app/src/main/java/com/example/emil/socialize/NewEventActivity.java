@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.res.Resources;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
@@ -35,6 +36,18 @@ import com.google.android.gms.location.places.PlaceBuffer;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseGeoPoint;
+import com.parse.ParseObject;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 public class NewEventActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
@@ -47,6 +60,7 @@ public class NewEventActivity extends AppCompatActivity implements GoogleApiClie
     EditText description;
     EditText attendants;
     Place placeToSave;
+    ParseObject event;
 
     private int year, month, day;
     EditText currentField;
@@ -165,7 +179,7 @@ public class NewEventActivity extends AppCompatActivity implements GoogleApiClie
             // arg1 = year
             // arg2 = month
             // arg3 = day
-            showDate(arg1, arg2+1, arg3);
+            showDate(arg1, arg2 + 1, arg3);
         }
     };
 
@@ -206,17 +220,91 @@ public class NewEventActivity extends AppCompatActivity implements GoogleApiClie
 
     private void showTime(int arg1, int arg2) {
 
-        currentField.setText(new StringBuilder().append(arg1).append(":").append(arg2));
+        String hours = String.format("%02d", arg1);
+        String minutes = String.format("%02d", arg2);
+
+        currentField.setText(new StringBuilder().append(hours).append(":").append(minutes));
 
     }
 
-    private void createEvent() {
+    //Saves the event to Parse
+    public void createEvent(View v) {
+
+        //Create the object and add the eventinfo.
+        if((!title.getText().toString().equals(""))
+            && (!dateStart.getText().toString().equals(""))
+            && (!dateEnd.getText().toString().equals(""))
+            && (!timeStart.getText().toString().equals(""))
+            && (!timeEnd.getText().toString().equals(""))
+            && (!description.getText().toString().equals(""))
+            && (!attendants.getText().toString().equals(""))
+            && (!location.getText().toString().equals(""))) {
 
 
+            event = new ParseObject("Event");
+
+            Log.i("EventInfo - Title", title.getText().toString());
+            event.put("title", title.getText().toString());
+            Log.i("EventInfo - Event start", dateStart.getText().toString() + " " + timeStart.getText().toString());
+            event.put("startDate", dateStart.getText().toString());
+            event.put("startTime", timeStart.getText().toString());
+            Log.i("EventInfo - Event end", dateEnd.getText().toString() + " " + timeEnd.getText().toString());
+            event.put("endDate", dateEnd.getText().toString());
+            event.put("endTime", timeEnd.getText().toString());
+            Log.i("EventInfo - Description", description.getText().toString());
+            event.put("description", description.getText().toString());
+            Log.i("EventInfo - MaxAttend", attendants.getText().toString());
+            event.put("maxAttenders", Integer.parseInt(attendants.getText().toString()));
+            event.put("attenders", 1);
+            Log.i("EventInfo - Created by", ParseUser.getCurrentUser().getUsername());
+            try {
+                Log.i("EventInfo - Address", String.valueOf(placeToSave.getAddress()));
+                event.put("address", String.valueOf(placeToSave.getAddress()));
+            } catch (Exception e) {
+                Log.i("EventInfo - Error", "Place does not have an address");
+                e.printStackTrace();
+            }
+
+            try {
+                Log.i("EventInfo - LatLng", String.valueOf(placeToSave.getLatLng()));
+                LatLng latlng = placeToSave.getLatLng();
+                double latitude = latlng.latitude;
+                double longitude = latlng.longitude;
+                ParseGeoPoint point = new ParseGeoPoint(latitude, longitude);
+                event.put("geopoint", point);
+            } catch (Exception e) {
+                Log.i("EventInfo - Error", "Place does not have a LatLng");
+                Toast.makeText(getApplicationContext(), "Error getting location", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+                return;
+            }
+
+            //Add the creator of the event to attenderlist.
+            List<String> attenders = new ArrayList<String>();
+            attenders.add(ParseUser.getCurrentUser().toString());
+            event.addAll("attendingUsers", attenders);
+        } else {
+
+            Toast.makeText(getApplicationContext(), "Make sure all fields are filled", Toast.LENGTH_LONG).show();
+
+        }
+
+
+        Toast.makeText(getApplicationContext(), "Creating event: " + title.getText().toString(), Toast.LENGTH_SHORT).show();
+        event.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if(e == null) {
+                    //Close and destroy acitivity on success
+                    finish();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Error saving event to database", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
 
     }
-
-
 
 
 
@@ -283,7 +371,7 @@ public class NewEventActivity extends AppCompatActivity implements GoogleApiClie
             }
             // Get the Place object from the buffer.
             final Place place = places.get(0);
-            placeToSave = place;
+            placeToSave = place.freeze();
             Log.i("AppInfo", place.getName() + place.getId() + place.getAddress() + place.getPhoneNumber() + place.getWebsiteUri() + " LATLNG: " + place.getLatLng());
             placeDetailsText = place.getName() + place.getId() + place.getAddress() + place.getPhoneNumber() + place.getWebsiteUri();
             // Format details of the place for display and show it in a TextView.
