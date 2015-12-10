@@ -97,9 +97,13 @@ public class ActivitiesFragmentList extends ListFragment {
                 ArrayList<String> attendingUsers = new ArrayList<String>();
                 attendingUsers = (ArrayList<String>)object.get("attendingUsers");
                 String users = "";
-                for(int i = 0; i < attendingUsers.size(); i++) {
-                    users += (attendingUsers.get(i));
-                    users += ", ";
+                try {
+                    for (int i = 0; i < attendingUsers.size(); i++) {
+                        users += (attendingUsers.get(i));
+                        users += ", ";
+                    }
+                } catch(Exception e) {
+                    e.printStackTrace();
                 }
                 Event event = new Event(eventId, title, description, address, starts, ends, creator, attenders, latitude, longitude, users);
                 temp.add(event);

@@ -1,6 +1,7 @@
 package com.example.emil.socialize;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -10,12 +11,18 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -31,18 +38,11 @@ public class MapsFragment extends SupportMapFragment implements
         GoogleMap.OnCameraChangeListener {
 
     private GoogleMap mMap;
+    private ArrayList<Event> events = new ArrayList<Event>();
+    private Map<Marker, Event> markerEventMap = new HashMap<Marker, Event>();
 
     private OnFragmentInteractionListener mListener;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MapsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static MapsFragment newInstance() {
 
        return new MapsFragment();
@@ -74,6 +74,9 @@ public class MapsFragment extends SupportMapFragment implements
                              Bundle savedInstanceState) {
 
         Bundle extras = getArguments();
+        ArrayList<Event> parcedEvents = extras.getParcelableArrayList("events");
+        this.events = parcedEvents;
+
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
@@ -93,10 +96,27 @@ public class MapsFragment extends SupportMapFragment implements
 
         // Set up mMap to handle different events
         setUpmMap();
+        LatLng coord;
+        for(Event event : events) {
 
+            coord = new LatLng(event.latitude, event.longitude);
+            Marker marker = mMap.addMarker(new MarkerOptions()
+                    .position(coord)
+                    .title(event.title)
+                    .snippet(event.starts + " " + event.description));
 
+            markerEventMap.put(marker, event);
+           /* mMap.addMarker(new MarkerOptions()
+                    .position(coord)
+                    .title(event.title)
+                    .snippet(event.starts + " " + event.description)); */
+
+        }
+
+        GPSTracker gps = new GPSTracker(getContext());
         // Add markers to map
         /*LatLng coord;
+
         for (Item item : markers) {
             coord = new LatLng(item.latitude, item.longitude);
             mMap.addMarker(new MarkerOptions()
@@ -108,9 +128,9 @@ public class MapsFragment extends SupportMapFragment implements
 
         // TODO Get user position with the class GPSTracker
         // Move the camera
-       /* LatLng cameraPos = new LatLng(58.39858598, 15.57723999);
-        mMap.moveCamera(CameraUpdateFactory.zoomTo(13));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(cameraPos));*/
+        LatLng cameraPos = new LatLng(gps.getLatitude(), gps.getLongitude());
+        mMap.moveCamera(CameraUpdateFactory.zoomTo(8));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(cameraPos));
 
     }
 
@@ -125,6 +145,21 @@ public class MapsFragment extends SupportMapFragment implements
                 }
             }
         });
+
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                //Toast.makeText(getActivity(), "Clicked on info marker, id: " + marker.getId() , Toast.LENGTH_LONG).show();
+                Event event = markerEventMap.get(marker);
+
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), EventInfo.class);
+                intent.putExtra("event", event);
+                startActivity(intent);
+              
+            }
+        });
+
     }
 
   /*  @Override

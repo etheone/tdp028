@@ -424,7 +424,9 @@ public class MainActivity extends FragmentActivity
     }
 
     public void swapToMapFragment(MapsFragment selectedFragment) {
-
+        Bundle data = new Bundle();
+        data.putParcelableArrayList("events", events);
+        selectedFragment.setArguments(data);
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
         hideFragment();
         fragmentManager.beginTransaction()
