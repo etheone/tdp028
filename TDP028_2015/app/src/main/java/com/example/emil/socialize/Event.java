@@ -4,6 +4,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 
 /**
  * Created by Emil on 2015-12-10.
@@ -12,6 +14,7 @@ public class Event implements Parcelable {
 
     public static final MyCreator CREATOR = new MyCreator();
 
+    public String eventId;
     public String title;
     public String description;
     public String address;
@@ -21,6 +24,7 @@ public class Event implements Parcelable {
     public String attenders;
     public double latitude;
     public double longitude;
+    public String attendingUsers;
 
     /**
      * This will be used only by the MyCreator
@@ -31,7 +35,7 @@ public class Event implements Parcelable {
          * Reconstruct from the parcel
          */
         Log.d("Item", "Item(Parcel source): time to put back parcel data");
-
+        eventId = source.readString();
         title = source.readString();
         description = source.readString();
         address = source.readString();
@@ -41,10 +45,12 @@ public class Event implements Parcelable {
         attenders = source.readString();
         latitude = source.readDouble();
         longitude = source.readDouble();
+        attendingUsers = source.readString();
 
     }
 
-    public Event(String title, String description, String address, String starts, String ends, String creator, String attenders, double latitude, double longitude) {
+    public Event(String eventId, String title, String description, String address, String starts, String ends, String creator, String attenders, double latitude, double longitude, String attendingUsers) {
+        this.eventId = eventId;
         this.title = title;
         this.description = description;
         this.address = address;
@@ -54,6 +60,7 @@ public class Event implements Parcelable {
         this.attenders = attenders;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.attendingUsers = attendingUsers;
     }
 
     @Override
@@ -65,6 +72,7 @@ public class Event implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         Log.d("Item", "writeToParcel..." + flags);
 
+        dest.writeString(eventId);
         dest.writeString(title);
         dest.writeString(description);
         dest.writeString(address);
@@ -74,6 +82,7 @@ public class Event implements Parcelable {
         dest.writeString(attenders);
         dest.writeDouble(latitude);
         dest.writeDouble(longitude);
+        dest.writeString(attendingUsers);
     }
 
     /**

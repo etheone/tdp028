@@ -71,22 +71,36 @@ public class MainActivity extends FragmentActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mNavigationDrawerFragment = (NavigationDrawerFragment)
-                getFragmentManager().findFragmentById(R.id.navigation_drawer);
-        mTitle = "Home";
-
-        // Set up the drawer.
-        mNavigationDrawerFragment.setUp(
-                R.id.navigation_drawer,
-                (DrawerLayout) findViewById(R.id.drawer_layout));
-
-
-
         if (savedInstanceState == null) {
+            mNavigationDrawerFragment = (NavigationDrawerFragment)
+                    getFragmentManager().findFragmentById(R.id.navigation_drawer);
+            mTitle = "Home";
+
+            // Set up the drawer.
+            mNavigationDrawerFragment.setUp(
+                    R.id.navigation_drawer,
+                    (DrawerLayout) findViewById(R.id.drawer_layout));
+
+
             homeFragment = new HomeFragment();
             listFragment = new ActivitiesFragmentList();
             mapFragment = new MapsFragment();
 
+
+            FragmentManager fragmentManager = getFragmentManager();
+
+
+            try {
+                if (fragmentManager != null) {
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.container, homeFragment)
+                            .commit();
+                }
+            } catch (Exception e) {
+
+                e.printStackTrace();
+
+            }
         }
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Event");
@@ -96,6 +110,7 @@ public class MainActivity extends FragmentActivity
                 if (e == null) {
                     ArrayList<Event> temp = new ArrayList<Event>();
                     for(ParseObject object : objects){
+                        String eventId = object.getObjectId();
                         String title = object.getString("title");
                         String description = object.getString("description");
                         String address = object.getString("address");
@@ -105,27 +120,25 @@ public class MainActivity extends FragmentActivity
                         String attenders = object.get("attenders").toString() + "/" + object.get("maxAttenders").toString();
                         Double latitude = object.getParseGeoPoint("geopoint").getLatitude();
                         Double longitude = object.getParseGeoPoint("geopoint").getLongitude();
-                        Event event = new Event(title, description, address, starts, ends, creator, attenders, latitude, longitude);
+                        ArrayList<String> attendingUsers = new ArrayList<String>();
+                        attendingUsers = (ArrayList<String>)object.get("attendingUsers");
+                        String users = "";
+                        for(int i = 0; i < attendingUsers.size(); i++) {
+                            users += (attendingUsers.get(i));
+                            users += ", ";
+                        }
+                        Event event = new Event(eventId, title, description, address, starts, ends, creator, attenders, latitude, longitude, users);
                         temp.add(event);
                         Log.i("DBINFO", "Finished fetching db stuff");
                     }
-                        events = temp;
+                    events = temp;
 
-                    } else {
-                        e.printStackTrace();
-                    }
+                } else {
+                    e.printStackTrace();
                 }
-            });
+            }
+        });
 
-
-                FragmentManager fragmentManager = getFragmentManager();
-
-
-        if(fragmentManager != null) {
-            fragmentManager.beginTransaction()
-                    .replace(R.id.container, homeFragment)
-                    .commit();
-        }
 
 
 
@@ -138,12 +151,12 @@ public class MainActivity extends FragmentActivity
     }
 
 
-
-/*    @Override
+   @Override
     protected void onResume() {
+       Log.i("INFO", "is being called");
         super.onResume();
-        setUpMapIfNeeded();
-    }*/
+        //setUpMapIfNeeded();
+    }
 
     /**
      * Sets up the map if it is possible to do so (i.e., the Google Play services APK is correctly
@@ -216,19 +229,28 @@ public class MainActivity extends FragmentActivity
                 break;
 
         }
+
         if(selectedFragment != null) {
+
+            if (selectedFragment.isVisible()) {
+                return;
+            } else {
           /*  FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction()
                     .replace(R.id.container, selectedFragment)
                     .commit(); */
-            fragmentSwapper(selectedFragment);
-            onSectionAttached(position + 1);
+                fragmentSwapper(selectedFragment);
+                onSectionAttached(position + 1);
+            }
         } else {
 
             if(map) {
-
-                swapToMapFragment(selectedMapFragment);
-                onSectionAttached(position + 1);
+                if (selectedMapFragment.isVisible()) {
+                    return;
+                } else {
+                    swapToMapFragment(selectedMapFragment);
+                    onSectionAttached(position + 1);
+                }
 
             }
 
