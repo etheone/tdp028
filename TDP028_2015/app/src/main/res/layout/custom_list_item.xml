@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:id="@+id/relativeLayout">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Eventname"
+        android:id="@+id/title"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textColor="#010101"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_margin="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lorem ipsum descriptum"
+        android:id="@+id/description"
+        android:layout_below="@+id/title"
+        android:layout_alignStart="@+id/title"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="#919da2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Adress"
+        android:id="@+id/adress"
+        android:layout_below="@+id/description"
+        android:layout_alignStart="@+id/title"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="#919da2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Attenders: 1/20"
+        android:id="@+id/attenders"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/description"
+        android:layout_alignEnd="@+id/title"
+        android:textColor="#919da2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Starts: 12:30 15/12/2015"
+        android:id="@+id/starts"
+        android:layout_below="@+id/adress"
+        android:layout_alignStart="@+id/adress"
+        android:textColor="#919da2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ends: 13:30 15/12/2015"
+        android:id="@+id/ends"
+        android:layout_below="@+id/starts"
+        android:layout_alignStart="@+id/starts"
+        android:layout_marginTop="10dp"
+        android:textColor="#919da2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Created by: hehe"
+        android:id="@+id/creator"
+        android:layout_below="@+id/ends"
+        android:layout_alignEnd="@+id/title"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="#919da2" />
+
+</RelativeLayout>

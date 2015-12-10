@@ -257,6 +257,7 @@ public class NewEventActivity extends AppCompatActivity implements GoogleApiClie
             event.put("maxAttenders", Integer.parseInt(attendants.getText().toString()));
             event.put("attenders", 1);
             Log.i("EventInfo - Created by", ParseUser.getCurrentUser().getUsername());
+            event.put("creator", ParseUser.getCurrentUser().getUsername());
             try {
                 Log.i("EventInfo - Address", String.valueOf(placeToSave.getAddress()));
                 event.put("address", String.valueOf(placeToSave.getAddress()));
@@ -281,7 +282,7 @@ public class NewEventActivity extends AppCompatActivity implements GoogleApiClie
 
             //Add the creator of the event to attenderlist.
             List<String> attenders = new ArrayList<String>();
-            attenders.add(ParseUser.getCurrentUser().toString());
+            attenders.add(ParseUser.getCurrentUser().getUsername());
             event.addAll("attendingUsers", attenders);
         } else {
 

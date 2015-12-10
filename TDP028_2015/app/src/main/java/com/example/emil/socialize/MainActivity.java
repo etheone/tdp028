@@ -10,6 +10,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Gravity;
@@ -29,8 +31,18 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import com.parse.FindCallback;
 import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 public class MainActivity extends FragmentActivity
         implements MapsFragment.OnFragmentInteractionListener, HomeFragment.OnFragmentInteractionListener, ActivitiesFragmentList.OnFragmentInteractionListener, NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -38,8 +50,10 @@ public class MainActivity extends FragmentActivity
 
     //private GoogleMap mMap; // Might be null if Google Play services APK is not available.
     private HomeFragment homeFragment;
-    private ActivitiesFragmentList listFragment;
+    private ActivitiesFragmentList listFragment = new ActivitiesFragmentList();
     private MapsFragment mapFragment;
+    private ArrayList<Event> events = null;
+
     Menu menu;
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -66,6 +80,8 @@ public class MainActivity extends FragmentActivity
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
+
+
         if (savedInstanceState == null) {
             homeFragment = new HomeFragment();
             listFragment = new ActivitiesFragmentList();
@@ -73,12 +89,45 @@ public class MainActivity extends FragmentActivity
 
         }
 
-        FragmentManager fragmentManager = getFragmentManager();
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Event");
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                if (e == null) {
+                    ArrayList<Event> temp = new ArrayList<Event>();
+                    for(ParseObject object : objects){
+                        String title = object.getString("title");
+                        String description = object.getString("description");
+                        String address = object.getString("address");
+                        String starts = object.getString("startTime") + " " + object.getString("startDate");
+                        String ends = object.getString("endTime") + " " + object.getString("endDate");
+                        String creator = object.getString("creator");
+                        String attenders = object.get("attenders").toString() + "/" + object.get("maxAttenders").toString();
+                        Double latitude = object.getParseGeoPoint("geopoint").getLatitude();
+                        Double longitude = object.getParseGeoPoint("geopoint").getLongitude();
+                        Event event = new Event(title, description, address, starts, ends, creator, attenders, latitude, longitude);
+                        temp.add(event);
+                        Log.i("DBINFO", "Finished fetching db stuff");
+                    }
+                        events = temp;
+
+                    } else {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+
+                FragmentManager fragmentManager = getFragmentManager();
+
+
         if(fragmentManager != null) {
             fragmentManager.beginTransaction()
                     .replace(R.id.container, homeFragment)
                     .commit();
         }
+
+
 
       /*  if(mapsview == true) {
 
@@ -87,6 +136,8 @@ public class MainActivity extends FragmentActivity
         }*/
 
     }
+
+
 
 /*    @Override
     protected void onResume() {
@@ -315,6 +366,12 @@ public class MainActivity extends FragmentActivity
 
     public void fragmentSwapper(Fragment selectedFragment) {
 
+        Bundle data = new Bundle();
+        data.putParcelableArrayList("events", events);
+        selectedFragment.setArguments(data);
+        Log.i("TAAG", selectedFragment.toString());
+
+
         FragmentManager fragmentManager = getFragmentManager();
         hideMapFragment();
         fragmentManager.beginTransaction()
@@ -354,5 +411,10 @@ public class MainActivity extends FragmentActivity
                 .commit();
 
     }
+
+    //////////////////////////////////////////////////////////////////////
+    //////////////////////Fill the activities fragment list///////////////
+    //////////////////////////////////////////////////////////////////////
+
 
 }
