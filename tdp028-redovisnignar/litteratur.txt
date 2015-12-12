@@ -1,4 +1,4 @@
-Här bygger du din lista med 5 primära vetenskapliga akademiska referenser.
+﻿Här bygger du din lista med 5 primära vetenskapliga akademiska referenser.
 
 Literaturen ska ha med affärsmodeller för mjukvara som licens, subscription, freemium. Mest intressant för kusen är freemium men målet är att förstå mer om hur vår deign påverkas av affärsmodellen.
 
@@ -6,3 +6,166 @@ Skiv ett stycke om vad du kan använda kunskapen i pappret till när du bygger
 appar. Bedöm trovärdigheten i källan. På vilket sätt är källa stark/svag som stöd i en argumentation.
 
 Använd korrekt format på referenser enligt någon standard.
+
+
+Freemium:
+
+http://aisel.aisnet.org/cgi/viewcontent.cgi?article=1050&context=icis2012
+Positiva recensioner väger tyngre än synlighet
+
+Den kunskapen jag kan dra nytta av vid utvecklande av appar i artikeln är 
+klarhet i hur relationen mellan en gratisversion av en applikation och en
+uppgraderad betalversion kan tänkas se ut. Framförallt hur recensioner och
+rankning av gratisversionen påverkar intänkter från betalversionen.
+Liu et al (2012, 14) menar att både ökad försäljningsrank och bättre
+användarrecensioner av gratisversionen bidrar till ökad försäljning av
+betalversionen, men det är intressant att se att det är främst positiva
+användarrecensioner och inte försäljningsrank, som bidrar mest till 
+ökade intänkter från betalversionen. 
+Detta kan tänkas antyda att en gratisversion är ett godtagbart sätt att
+öka synliggöra en mobilapplikation, men att intäkterna till stor del 
+avgörs av produktens kvalité, inte synlighet.
+
+Denna studiens trovärdighet skulle jag bedömma som relativt god. Främst
+med tanke på att den blivit citerad 17 gånger, vilket inte är mycket
+men inte heller helt utan citat. Studiens källor verkar även dem vara
+korrekta samt erbjuda studiens författare med objektiv data, vilket
+är viktigt i en studie av detta slag. Dock bör den som drar nytta
+av studien ha i åtanke att denna undersökning verkar ha utförts
+på Google Plays topprankade applikationer och därav stämmer eventuellt
+inte studiens slutsatser överens med en övergripande blick av
+applikationer på Google Play. Däremot kan det tänkas stämma om man
+utgår från att vilja utveckla en så populär applikation som möjligt.
+
+
+http://cacm.acm.org.e.bibl.liu.se/magazines/2011/5/107686-challenges-and-business-models-for-mobile-location-based-services-and-advertising/fulltext
+Plats- och användarspecifik reklam för att maximera intäkter.
+
+Dhar, Varshney (2011) menar att genom utvecklingen av platsbaserade
+tjänster kommer mobiloperatörer att kunna ta en god del av intänkterna 
+då de förhandlar med innehållsleverantörer (content providers). De
+påpekar även hur annonser och annan reklam kommer att optimeras genom
+riktad annonsering till varje specifik användare, genom att kombinera
+platsbasering tillsammans med användarspecifikt innehåll.
+Min personliga åsikt är att platsbaserade tjänster är framtiden. Det
+tror jag inte att någon säger emot. Kunskapen jag skulle kunna använda
+från denna artikeln är att det är viktigt att samla in data från
+användaren. Detta för att på bästa sätt, i en freemium applikation som 
+implementerar reklam, kunna anpassa reklaminnehållet efter användaren
+på bästa sätt, kanske till och med att reklamen i applikatonen bidrar
+till att applikationen ses som en bra applikation istället för att
+motverka det. Kanske är det till och med möjligt att bygga en 
+applikationen vars funktion är att visa annonser till användaren,
+på ett så fördelaktigt sätt som möjligt?
+
+Artikeln bedömmer jag som väldigt trovärdig. Den är citerad 172 gånger,
+publicerad i Communications of the ACM och innehåller även trovärdiga 
+referenser.
+
+
+
+Freemium & Subscription:
+http://ieeexplore.ieee.org.e.bibl.liu.se/stamp/stamp.jsp?tp=&arnumber=6480197 
+Konvertera gratisanvändare till 
+
+Studien undersöker hurvida en gratisversion av en applikation bidrar
+till att användare uppgraderar till en prenumerationsbaserad version
+av applikationen. I studien fokuserar de specifikt på MaaS baserade
+musikapplikatoner så som Spotify och dylika lösningar. De kommer fram
+till att med dagens konverteringsratio (gratisanvändare som väljer att
+betala) är detta inte en hållbar lösning. Kostnaderna för att underhålla
+och tillgodose användare med en sådan applikation är inte hållbara i 
+längden. Dock nämner de även att de som deltog i undersökningen är 
+studenter och inte representativa för alla som använder tjänsten.
+I detta sammanhanget kan jag dra nytta av att det är viktigt att
+tänka på vad det är för typ av applikation man levererar. I Spotifys
+fall handlar det om att leverera musik, dvs. något som en tredje part
+äger. Fallet blir fort sådant att kostnaderna blir höga och då
+är det viktigt att tänka på att det krävs mycket kapital redan
+i ingångsläget, samt en relativt hög inkomst ganska snabbt efter starten.
+Skulle man i det skedet ha en applikation utan större kostnader i
+uppstartsskedet blir det genast lättare att få en hållbar
+konverteringsratio. Allra viktigast att tänka på vid utveckling
+av en gratis- till prenumerationsbaserad applikation verkar vara
+att det är viktigt att premiumfunktionerna håller ett högt värde
+hos användaren. Dvs att de funktioner som erbjuds vid premium
+behöver ha ett mycket högt värde för användarna för att de skall
+välja att uppgradera sin applikation.
+
+Relativt trovärdig artikel. Citerad 17 gånger och publicerad i 
+IEEE Computer Society. Dock viktigt att tänka på att deltagarna
+i undersökningen är studenter, därav har deltagarna kanske inte 
+samma ekonomiska möjligheter som mediananvändaren av applikationerna
+i undersökningen. Viktigt är även att ha i åtanke att studien verkar
+ha genomförts på personer som redan varit gratisanvändare. Dvs de 
+som än så länge ej valt att uppgradera sin applikation. Därav kan
+det argumenteras att de som använder gratis även föredrar gratis.
+Ett rättvisare sätt att mäta hade möjligtvis varit att enbart mäta
+nya användare under en längre tidsperiod, för att sedan se hur stor
+andel som valde att bli premiumanvändare.
+
+
+Software as a license & Freemium:
+http://www.idi.ntnu.no/grupper/su/courses/tdt10/curricula2010/P2-1-Fitzgerald06.pdf
+Tiden för mjukvara som license är ute.
+
+I Fitzgerald (2006) undersöker författaren hurvida closed source
+projects kommer kunna konkurra med den allt mer utbredda open source
+marknaden. Han myntar termen open source 2.0 som framtiden i branchen.
+Han menar att open source 2.0 kanske inte är open source i sin helhet
+men att det är något som växer fram ur samma del.
+Jag håller med i artikeln i många delar och tittar vi på vart vi är
+idag, där en av marknadens största aktörer (Microsoft) nyligen släppt
+ett gratis operativsystem, hade författaren en del rätt i sina tankar.
+I studien undersöker han även koncepten bakom pay-per-value, främst
+via hur företag fortfarande väljer att betala för tjänster som
+har goda open source alternativ.
+Ur denna studien vill jag främst lyfta fram och ta till mig kunskapen
+om att tiden för Software as a license mer eller mindre är förbi.
+Allt vanligare blir det med "addons", dvs möjligheter för användaren
+att köpa till innehåll, material eller tilläggsfuntkionalitet.
+Dock finner jag att inom väldigt nichsade applikationer med 
+en tunn målgrupp, kan Software as a license fortfarande fungera. 
+
+God trovärdighet då artikeln är referentgranksad (peer-reviewed), 
+vilket syftar till att upprätthålla vetenskaplig standard och 
+objektivitet. Kan liknas vid lektörsgranskning av annan litteratur.
+Den är även publicerad i MIS Quarterly och inte minst citerad 659
+gånger.
+
+
+Affiliates:
+http://link.springer.com.e.bibl.liu.se/article/10.1007/s12109-010-9158-3/fulltext.html
+
+
+Artikeln jämför olika typer av affärsmodeller för flera typer av
+företag, bl.a. för webbaserade tjänster. Dessa affärsmodeller är 
+till stor del aktuella även för mobila applikationer. En av de
+affärsmodeller som diskuteras är affiliates. Denna kunskapen 
+är väldigt bra att ha läst om. Den passar appen jag utvecklat
+i kurser väldigt bra. Affiliates för applikationen jag utvecklar
+skulle t.ex. kunna vara företag som köper plats för sponsrade länkar
+och sedan tillåts sälja biljetter via applikationen, alternativt att
+de sponsrade eventen visas högst upp gratis. För att sedan skapa
+inkomster för varje såld biljett. Detta i kombinaton med en plats-
+baserad tjänst och evenemang som är relevanta för varje specifik
+användare skulle kunna vara en succé. Dock ytterst viktigt med en
+bred användarbas för att kunna generera de stora intäkterna.
+Artiklen nämner även SEO (Search engine optimization), vilket
+enligt författaren ger nya uppstartsföretag en chans mot marknadens
+jättar.
+
+Artikeln är publicerad i Publishing Research Quarterly vilket
+innebbär att även denna artikeln är referentgranskad. Detta
+indikerar på bra trovärdighet. Dock endast citerad sju gånger, 
+vilket är lite väl lite. Artikeln har inte heller några källor,
+vilket är ett stort minus. Detta gör att artikelns fakta ej
+kan konstateras. Den bör dock kunna ses som en godkänd källa 
+enbart för att den är referentgranskad och publicerad.
+
+
+Referenslista:
+Charles Zhechao Liu, Yoris A. Au, Hoon Seok Choi. 2012. AN EMPIRICAL
+STUDY OF THE FREEMIUM STRATEGY FOR MOBILE APPS: EVIDENCE FROM THE 
+GOOGLE PLAY MARKET. http://aisel.aisnet.org/cgi/viewcontent.cgi?
+article=1050&context=icis2012 (Hämtad 2015-12-12).

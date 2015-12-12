@@ -156,7 +156,7 @@ public class MapsFragment extends SupportMapFragment implements
                 intent.setClass(getActivity(), EventInfo.class);
                 intent.putExtra("event", event);
                 startActivity(intent);
-              
+
             }
         });
 
