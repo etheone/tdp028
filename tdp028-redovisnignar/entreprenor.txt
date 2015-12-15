@@ -7,3 +7,89 @@ produkt levererar. Men man behveör hitta conternuerliga betalegenskaper.
 Förbrukningsbara värden, prenumerationstjänster i relation till produkten.
 Betänk global konkurrens. Vad kommer andra att lätt kuna ge bort för att ta
 dina kunder.
+
+Om socialize:
+
+Socialize är, eller var tänkt, att vara en applikation där användaren 
+får möjlighet att skapa, hitta och delta i evenemang inom rad olika kategorier. 
+Dessa kan vara allt från sportevent och sportaktiviteter, esportsaktiviter, 
+esportsevenemang, musikaktiviteter, musikevenemang till mer traditionella
+aktiviteter som firande av  traditioner och platsbaserade händelser.
+
+Användaren har möjligheten att skapa ett eller flera egna evenemang, som
+sedan visas i en lista och på en karta. Andra användare har sedan möjlighet
+att anmäla och avanmäla sig på de evenemang och aktiviteter de finner 
+intressanta.
+
+Tankar som växt fram under utvecklingen & Nisch:
+
+Under utvecklingen av applikationen har jag kommit fram till en del olika
+saker. Både möjligheter för utveckling av Socialize som produkt och att
+kanske rent utav byta bana för Socialize. Ett tredje alternativ skulle
+vara att låta Socialize växa i den banan applikationen redan tagit
+och utveckla ytterligare en applikation som går den andra vägen.
+Problemet som skulle uppstå vid ett utökande av applikationen är att
+den riktar sig mot två delvis delade målgrupper. Den ena en grupp som
+gärna vill ha saker och ting gratis, alternativt är intresserade av 
+att delta i aktiviteter, då bl.a. med människor de inte känner. Den
+andra gruppen är en grupp som istället vill betala för sig och gå på
+mer "publika" evenemang och aktiviteter, där man istället tar med sig
+en eller flera vänner.
+
+Den andra applikationens centrala del, låt kalla den Socialize 2.0 för att göra det
+enkelt för oss, skulle istället sikta mot att göra evenemang som konserter,
+teater och liknande typer av evenemang mer tillgängliga i mobilt format.
+Till att börja med i Sverige, och tjäna pengar främst via affiliates, för
+att sedan försöka expandera och ta sig in på en global marknad. De globala
+möjligheterna finns även för den första versionen av Socialize och skulle
+kanske lyckas ännu bättre på en internationel marknad än den svenska.
+
+I slutändan står vi då där med en applikation för "privata" event (skapade
+av privatpersoner) och en applikation för "publika" event (skapade av företag).
+Intäkterna i Socialize (privata event) skulle främst komma från riktad,
+platsbaserad och användarspecifik annonsering. Fördelaktigast integrerad
+på ett sömlöst sätt. En premiumtjänst där användaren betalar för att
+slippa annonsintäkterna känns inte aktuell då undersökningar, se
+min litteratursökning för tydligare beskrivning, visar att det behöver
+vara mer värde i en premiumapplikation än att slippa annonser.
+
+I Socialize 2.0, applikationen för "publika" event, skulle intäkterna
+istället främst komma från affiliates, vilket är väldigt vanligt i
+evenemangs- och aktivitetsbranchen. Affiliates innebär att man 
+får användare att köpa ett annat företags produkter eller tjänster
+och då tjänar liten slant för varje köp som sker. Ytterligare intäkter
+skulle kunna generaras genom att låta de andra företagen, dvs Socialize 2.0s,
+affiliates, betala extra för att få sina evenemang listade i bättre positioner.
+Framgång i den typen av intäkter är givetvis tätt kopplade till applikationens
+framgång. Värt att nämna här är även att dessa affiliates inte enbart
+behöver erbjuda biljetter till olika typer av evenemang utan det kan även
+innebära tillhandahållande av lokal, redskap, utrustning eller platser att vara på.
+Listan är lång och att tillhanda hålla dessa typer av saker för användarna
+kan även tänkas vara framgångsrikt i den första versionen av Socialize, med
+"privata" event, men istället kanske i form av annonser, specifika beroende 
+på vad för typ av aktiviteter en användare tittar på, skapar och deltar i.
+
+
+Submarknader:
+
+Diverse submarknader inom den generella marknaden för Socialize är
+framförallt de kategorier som användarnas aktiviteter kan tänkas hamna
+inom ramarna för, några av dessa t.ex. kan vara: Sport, Esport, Musik och
+Kultur.
+
+Submarknader är viktiga att identifiera för att kunna distribuera (visa)
+rätt och bäst evenemang och aktiviteter för varje användare. Dessa är även
+viktiga att identifiera för att kunna hitta ett effektivt sätt att marknadsföra
+applikationen till potentiella användare inom varje submarknad. Ett exempel
+på detta är att när appen marknadsförs som en app för att hitta "aktiviteter"
+kanske inte den musikintresserade bestämmer sig för att ladda ner den. Ser denne
+musikintresserade personen istället en annons i rätt sammanhang, som en applikation
+där denne kan hitta likasinade människor att utöva musik med, kan det istället visa
+sig att applikationen vinner sig en ny användare. Detta tack vare att annonsen
+syntes i en relevant omgivning med ett relevant budskap för den specifika användaren.
+
+Detta måste givetvis göras på ett kostnadseffektivt sätt. En ny uppstart har långt
+ifrån samma medel att tillgå som de stora företagen i branschen. I ett sådant läge
+kan de vara bra att se över sina alternativ, där sökordsoptimering och google adwords
+kan vara en bra och relativt kostnadseffektiv utgångspunkt. Kostnadsmässigt sett
+åtminstone sökordsoptimering.

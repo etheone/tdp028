@@ -61,7 +61,6 @@ public class StartActivity extends Activity implements View.OnClickListener, Vie
                 signUpOrLogin(v);
 
             }
-
         }
         return false;
     }
@@ -88,43 +87,29 @@ public class StartActivity extends Activity implements View.OnClickListener, Vie
                 emailField.setVisibility(View.VISIBLE);
                 nameField.setVisibility(View.VISIBLE);
 
-
-
-
-
-
             }
-
-
 
         }  else if (v.getId() == R.id.logo || v.getId() == R.id.relativeLayout) {
 
             InputMethodManager inm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
             inm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-
         }
 
     }
 
     public void signUpOrLogin(View view) {
 
-        Log.i("AppInfo", String.valueOf(usernameField.getText()));
-        Log.i("AppInfo", String.valueOf(passwordField.getText()));
-        Log.i("AppInfo", String.valueOf(nameField.getText()));
-        Log.i("AppInfo", String.valueOf(emailField.getText()));
-
         if (signUpMode == true) {
-
 
             ParseUser user = new ParseUser();
             user.setUsername(String.valueOf(usernameField.getText()));
-            if (emailField.getText() != null) {
+            if (emailField.getText().toString() != "") {
 
                 user.setEmail(String.valueOf(emailField.getText()));
 
             }
 
-            if (nameField.getText() != null) {
+            if (nameField.getText().toString() != "") {
 
                 user.put("name", String.valueOf(nameField.getText()));
 
@@ -162,14 +147,12 @@ public class StartActivity extends Activity implements View.OnClickListener, Vie
                     } else {
 
                         Log.i("AppInfo", "Login failed");
-                        //e.printStackTrace();
                         //TODO More informative error messages displayed to users.
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
 
                     }
                 }
             });
-
         }
 
     }
@@ -184,10 +167,6 @@ public class StartActivity extends Activity implements View.OnClickListener, Vie
             redirectLoggedIn();
 
         }
-
-        /*ParseObject testObject = new ParseObject("TestObject");
-        testObject.put("foo", "bar");
-        testObject.saveInBackground();*/
 
         usernameField = (EditText) findViewById(R.id.username);
         passwordField = (EditText) findViewById(R.id.password);
@@ -225,11 +204,6 @@ public class StartActivity extends Activity implements View.OnClickListener, Vie
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-       /* if (id == R.id.action_settings) {
-            return true;
-        }*/
 
         return super.onOptionsItemSelected(item);
     }

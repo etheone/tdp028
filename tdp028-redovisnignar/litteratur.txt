@@ -10,8 +10,7 @@ Använd korrekt format på referenser enligt någon standard.
 
 Freemium:
 
-http://aisel.aisnet.org/cgi/viewcontent.cgi?article=1050&context=icis2012
-Positiva recensioner väger tyngre än synlighet
+1. Positiva recensioner väger tyngre än synlighet
 
 Den kunskapen jag kan dra nytta av vid utvecklande av appar i artikeln är 
 klarhet i hur relationen mellan en gratisversion av en applikation och en
@@ -38,8 +37,7 @@ applikationer på Google Play. Däremot kan det tänkas stämma om man
 utgår från att vilja utveckla en så populär applikation som möjligt.
 
 
-http://cacm.acm.org.e.bibl.liu.se/magazines/2011/5/107686-challenges-and-business-models-for-mobile-location-based-services-and-advertising/fulltext
-Plats- och användarspecifik reklam för att maximera intäkter.
+2. Plats- och användarspecifik reklam för att maximera intäkter.
 
 Dhar, Varshney (2011) menar att genom utvecklingen av platsbaserade
 tjänster kommer mobiloperatörer att kunna ta en god del av intänkterna 
@@ -65,8 +63,8 @@ referenser.
 
 
 Freemium & Subscription:
-http://ieeexplore.ieee.org.e.bibl.liu.se/stamp/stamp.jsp?tp=&arnumber=6480197 
-Konvertera gratisanvändare till 
+
+3. Konvertera gratisanvändare till betalande en utmaning
 
 Studien undersöker hurvida en gratisversion av en applikation bidrar
 till att användare uppgraderar till en prenumerationsbaserad version
@@ -106,8 +104,8 @@ andel som valde att bli premiumanvändare.
 
 
 Software as a license & Freemium:
-http://www.idi.ntnu.no/grupper/su/courses/tdt10/curricula2010/P2-1-Fitzgerald06.pdf
-Tiden för mjukvara som license är ute.
+
+4. Tiden för mjukvara som license är ute.
 
 I Fitzgerald (2006) undersöker författaren hurvida closed source
 projects kommer kunna konkurra med den allt mer utbredda open source
@@ -135,8 +133,8 @@ gånger.
 
 
 Affiliates:
-http://link.springer.com.e.bibl.liu.se/article/10.1007/s12109-010-9158-3/fulltext.html
 
+5. SEO ger nya uppstarter en chans mot marknadens jättar.
 
 Artikeln jämför olika typer av affärsmodeller för flera typer av
 företag, bl.a. för webbaserade tjänster. Dessa affärsmodeller är 
@@ -165,7 +163,28 @@ enbart för att den är referentgranskad och publicerad.
 
 
 Referenslista:
-Charles Zhechao Liu, Yoris A. Au, Hoon Seok Choi. 2012. AN EMPIRICAL
-STUDY OF THE FREEMIUM STRATEGY FOR MOBILE APPS: EVIDENCE FROM THE 
-GOOGLE PLAY MARKET. http://aisel.aisnet.org/cgi/viewcontent.cgi?
+1.Liu, C.Z., Au, Y.A. and Choi, H.S., 2012. An empirical study of 
+the freemium strategy for mobile apps: Evidence from the google 
+play market. http://aisel.aisnet.org/cgi/viewcontent.cgi?
 article=1050&context=icis2012 (Hämtad 2015-12-12).
+
+2. Dhar, S. and Varshney, U., 2011. Challenges and business models
+for mobile location-based services and advertising. Communications 
+of the ACM, 54(5), pp.121-128. http://cacm.acm.org.e.bibl.liu.se/
+magazines/2011/5/107686-challenges-and-business-models-for-mobile-
+location-based-services-and-advertising/fulltext (Hämtad 2015-12-12).
+
+3. Wagner, T.M., Benlian, A. and Hess, T., 2013, January. The Advertising 
+Effect of Free--Do Free Basic Versions Promote Premium Versions within the 
+Freemium Business Model of Music Services?. In System Sciences (HICSS), 2013 
+46th Hawaii International Conference on (pp. 2928-2937). IEEE. http://ieeexplore.
+ieee.org.e.bibl.liu.se/stamp/stamp.jsp?tp=&arnumber=6480197&tag=1 (Hämtad 2015-12-12).
+
+4. Fitzgerald, B., 2006. The transformation of open source software. Mis Quarterly, 
+pp.587-598. http://www.idi.ntnu.no/grupper/su/courses/tdt10/curricula2010/P2-1-
+Fitzgerald06.pdf (Hämtad 2015-12-12).
+
+5. Hung, J., 2010. Economic essentials of online publishing with associated 
+trends and patterns. Publishing Research Quarterly, 26(2), pp.79-95. http://l
+ink.springer.com.e.bibl.liu.se/article/10.1007/s12109-010-9158-3/fulltext.html
+(Hämtad 2015-12-12).

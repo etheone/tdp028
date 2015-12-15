@@ -5,17 +5,12 @@ import android.app.ListFragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import com.parse.FindCallback;
-import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
@@ -28,9 +23,6 @@ public class ActivitiesFragmentList extends ListFragment {
     private OnFragmentInteractionListener mListener;
     private ArrayList<Event> events = new ArrayList<Event>();
     ListView eventsList;
-    TextView textView;
-    //List<ParseObject> events = new ArrayList<ParseObject>();
-
 
     public static ActivitiesFragmentList newInstance() {
 
@@ -53,27 +45,17 @@ public class ActivitiesFragmentList extends ListFragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_activities_fragment_list, container, false);
         // Inflate the layout for this fragment
+
         Bundle extras = getArguments();
-        Log.i("TAAG", "we here");
         ArrayList<Event> parcedEvents = extras.getParcelableArrayList("events");
         this.events = parcedEvents;
-        Log.i("TAAG", "we here 2");
         CustomListAdapter adapter;
-        //eventsList = (ListView)getActivity().findViewById(R.id.eventList);
 
-
+        //Populates the list
         eventsList = (ListView)rootView.findViewById(R.id.eventList);
-        Log.i("TAAG", "we here 3");
         adapter = new CustomListAdapter(getActivity().getApplicationContext(), R.layout.custom_list_item, events);
-        Log.i("TAAG", "we here 4");
         setListAdapter(adapter);
 
-
-
-
-
-
-        //return inflater.inflate(R.layout.fragment_activities_fragment_list, container, false);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
@@ -113,18 +95,16 @@ public class ActivitiesFragmentList extends ListFragment {
 
         }
 
-
+        //Populates the list
         CustomListAdapter adapter;
-        Log.i("TAAG", "we here 3");
         adapter = new CustomListAdapter(getActivity().getApplicationContext(), R.layout.custom_list_item, temp);
-        Log.i("TAAG", "we here 4");
         setListAdapter(adapter);
 
         super.onResume();
 
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
+    //Could be used in the future for more advanced fragmentinteraction (Navdrawer)
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -141,10 +121,6 @@ public class ActivitiesFragmentList extends ListFragment {
                     + " must implement OnFragmentInteractionListener");
         }
 
-        Log.i("TAAG", "we here 5");
-
-
-
     }
 
     @Override
@@ -158,10 +134,6 @@ public class ActivitiesFragmentList extends ListFragment {
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
      * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name

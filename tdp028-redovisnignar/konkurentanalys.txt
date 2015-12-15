@@ -1,4 +1,4 @@
-Här ska 3 kunkurerande appa länkas och beskrivas.
+﻿Här ska 3 kunkurerande appa länkas och beskrivas.
 
 Tänk på att en konkurent är en app som tar din kunds tid från dig genom att
 ge en likvärdig eller alternativ, relaterad tjänst. De ger dina kunder ett liknande värde som ersätter ditt - inte kopierar ditt.
@@ -12,4 +12,100 @@ det inte finns något. Det är ok att tänka mer i vilken kategori din app hamna
 
 Reflektera över hur du kan positionera din app i förhållande till konkurrenter. Hur måste du designa din app för att skilja dig eller
 fokusera mer på någoin relevant delmängd för att bli unik i förhållande till konkurenterna.
+
 1.
+Name:
+Facebook
+
+URL:
+https://play.google.com/store/apps/details?id=com.facebook.katana
+
+Facebook ser jag som den största konkurrenten på marknaden. 
+Applikationen i sin helhet behöver enligt mig inte förklaras, 
+då den är så pass känd. Konkurrensen grundar sig främst i 
+Facebooks kolossala användarbas, i kombination med
+evenemangsfunktionen som finns integerad i tjänsten. Det faktum
+att alla kan skapa evenemang, som sedan har potentialen att bli
+synliga för en väldigt stor skara användare ser jag som det största
+hotet. Konkurrensen skulle kunna elimineras med en smart Facebook
+integration och på så sätt skulle även applikationen kunna spridas.
+En viktig del utifall en integration av Facebook skulle ske är att
+det är viktigt att klargöra för användaren att det är ett högst
+frivilligt val att integrera Facebook i Socialize.
+
+Vid genomförande av ovan integration ser man till att eliminera
+en konkurrent, dra nytta av dess användarbas och samtidigt 
+marknadsföra sin applikation, helt utan att skrämma iväg användare
+med påtvingad anslutning till tredjepart!
+
+
+2.
+Name:
+All Events in City
+
+URL:
+https://play.google.com/store/apps/details?id=com.amitech.allevents
+
+All Events in City är en applikation där användaren tillåts mata in
+alternativt använda sin nuvarande plats för att kunna lista olika
+typer av evenemang. Användaren kan också välja att se evenemang i
+närliggande städer samt välja evenemang utifrån kategori med diverse
+filtreringsalternativ. I applikationen verkar användaren dock inte
+kunna få en översiktlig bild av närliggande evenemang genom att 
+öppna en karta där evenemanget väljs ut, utan användaren tvingas
+till att leta igenom långa listor för detta. Det verkar även finnas
+möjligheter att söka efter evenemang som finns i applikationens 
+databas. All Events in City verkar inte heller erbjuda användaren
+möjlighet att köpa  biljetter till de evenemang som kräver det. Inte
+heller verkar det möjligt för användare att skapa egna evenemang.
+
+Detta är det första och kanske enda applikationen jag ser som en
+riktig konkurrent till min applikation. All Events in City erbjuder
+inte användaren något som jag känner skulle gynna Socialize via en
+utökning av appen alternativt att koppla samman apparna på något sätt. 
+Socialize placerar sig i samma kategori som All Events in City.
+Min applikation tillåter dock användaren att kunna välja mellan
+att visa evenemang på antingen en karta eller i listvy. I dagsläget
+har inte Socialize en sökfunktion, vilket kan vara vettigt att
+implementera för att möta den funktionaliten i All Events in City.
+Skulle Socialize påbörja så kallade affiliatessamarbeten med 
+återförsäljare av evenemangsbiljetter skulle detta vara
+ett utmärkande del som skiljer sig avsevärt från All Events in City
+där man i nuläget enbart kan visa att man skall "attenda" ett event.
+
+Det kan även argumenteras att det Socialize från början är tänkt att
+erbjuda inte finns alls i denna applikation utan att de skiljer sig
+åt helt och hållet, då ursprungsidén enbart var att användare skall
+ha möjlighet att visa "privatevenemang" i appen. Därav kan konkurrensen
+och implementationen av jämförelsen ovan (en tanke som växt fram under
+arbetets gång) eventuellt vara en idé för en ny och helt separat
+applikation!
+
+
+
+3. 
+Name:
+Ticnet
+
+URL:
+http://www.ticnet.se/
+
+Ticnet är en hemsida som säljer biljetter till evenemang runt om
+i Sverige. På hemsidan kan man sortera på kategori, datum eller 
+län. Ticnet agerar idag återförsäljare av biljetter åt majoriteten
+av alla konserthus, teatrar, mässor m.m i Sverige. Detta är även
+tanken att det skall vara en möjlighet i Socialize. Att starta
+nya samarbeten med dessa konserthus m.m kan bli en utmaning med
+tanke på de redan existerade samarbetena med existerande tjänster
+som ticnet och liknande företag erbjuder. Ticnet ägs även av det
+internationella bolaget Ticketmaster, som erbjuder liknande tjänster
+i bl.a. Tyskland, Storbritannien och USA.
+
+Återigen ser jag här inte ett problem med denna konkurrensen då
+Ticnet/Ticketmaster erbjuder tredje parter att verka som affiliates
+för företaget, som är en av de tilltänkta affärsmodellerna för 
+Socialize. Större delen av de existerande konkurrenserna på marknaden
+idag skulle via kreativitet och smart integration istället kunna
+verka för att lysta Socialize till nya höjder!
+
+

@@ -4,9 +4,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
 
-import java.util.ArrayList;
-
-
 /**
  * Created by Emil on 2015-12-10.
  */

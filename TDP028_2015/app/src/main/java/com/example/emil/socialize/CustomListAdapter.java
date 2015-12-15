@@ -1,23 +1,19 @@
 package com.example.emil.socialize;
 
-import android.content.ClipData;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import com.parse.ParseObject;
-
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Emil on 2015-12-09.
  */
+
 public class CustomListAdapter extends ArrayAdapter<Event> {
     private final Context context;
     private final ArrayList<Event> items;
@@ -38,9 +34,6 @@ public class CustomListAdapter extends ArrayAdapter<Event> {
         LayoutInflater vi;
         vi = LayoutInflater.from(getContext());
         v = vi.inflate(R.layout.custom_list_item, parent, false);
-           /* LayoutInflater inflater = (LayoutInflater) context
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = inflater.inflate(R.layout.custom_list_item, parent, false);*/
 
         Log.i("AdapterInfo", "Trying to set the stuff");
         Event e = getItem(position);
@@ -57,11 +50,9 @@ public class CustomListAdapter extends ArrayAdapter<Event> {
 
             if (title != null) {
                 title.setText(items.get(position).title);
-                //title.setText((e.get("title")).toString());
             }
 
             if (description != null) {
-                //description.setText((e.get("description")).toString());
                 description.setText(items.get(position).description);
             }
 
@@ -69,7 +60,6 @@ public class CustomListAdapter extends ArrayAdapter<Event> {
                 String adr;
                 try {
                     adr = items.get(position).address;
-                    //adr = e.get("address").toString();
                 } catch(Exception ee) {
                     adr = "No address availible";
                 }
@@ -91,8 +81,6 @@ public class CustomListAdapter extends ArrayAdapter<Event> {
             }
 
             if (attenders != null) {
-                //int attending = (int) e.get(position).attenders;
-                //int maxAttending = (int) e.get("maxAttenders");
                 attenders.setText(items.get(position).attenders);
             }
         }

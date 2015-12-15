@@ -5,21 +5,15 @@ import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.res.Resources;
 import android.net.Uri;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Html;
 import android.text.Spanned;
-import android.text.format.Time;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -36,7 +30,6 @@ import com.google.android.gms.location.places.PlaceBuffer;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
@@ -44,10 +37,8 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
+
 
 public class NewEventActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
@@ -62,7 +53,6 @@ public class NewEventActivity extends AppCompatActivity implements GoogleApiClie
     Place placeToSave;
     ParseObject event;
 
-    private int year, month, day;
     EditText currentField;
 
     @Override
@@ -79,15 +69,11 @@ public class NewEventActivity extends AppCompatActivity implements GoogleApiClie
         description = (EditText)findViewById(R.id.description);
         attendants = (EditText)findViewById(R.id.attendants);
 
-        /////////////////////////////////////////////////////////////////////////
-        ////////////////AUTOCOMPLETE GOOGLE PLACES API FUNCTIONS////////////////
-        ////////////////////////////////////////////////////////////////////////
+        //Create the google autocomplete place api client
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .enableAutoManage(this, 0 /* clientId */, this)
                 .addApi(Places.GEO_DATA_API)
                 .build();
-
-        //setContentView(R.layout.activity_main);
 
         // Retrieve the AutoCompleteTextView that will display Place suggestions.
         mAutocompleteView = (AutoCompleteTextView)
@@ -96,24 +82,12 @@ public class NewEventActivity extends AppCompatActivity implements GoogleApiClie
         // Register a listener that receives callbacks when a suggestion has been selected
         mAutocompleteView.setOnItemClickListener(mAutocompleteClickListener);
 
-        // Retrieve the TextViews that will display details and attributions of the selected place.
-        //mPlaceDetailsText = (TextView) findViewById(R.id.place_details);
-        //mPlaceDetailsAttribution = (TextView) findViewById(R.id.place_attribution);
-
         // Set up the adapter that will retrieve suggestions from the Places Geo Data API that cover
         // the entire world.
         mAdapter = new PlaceAutoCompleteAdapter(this, mGoogleApiClient, BOUNDS_LINKOPING,
                 null);
         mAutocompleteView.setAdapter(mAdapter);
 
-        // Set up the 'clear text' button that clears the text in the autocomplete view
-        /*Button clearButton = (Button) findViewById(R.id.button_clear);
-        clearButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mAutocompleteView.setText("");
-            }
-        });*/
     }
 
     @Override
@@ -175,10 +149,7 @@ public class NewEventActivity extends AppCompatActivity implements GoogleApiClie
     private DatePickerDialog.OnDateSetListener myDateListener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
-            // TODO Auto-generated method stub
-            // arg1 = year
-            // arg2 = month
-            // arg3 = day
+
             showDate(arg1, arg2 + 1, arg3);
         }
     };
@@ -287,9 +258,7 @@ public class NewEventActivity extends AppCompatActivity implements GoogleApiClie
         } else {
 
             Toast.makeText(getApplicationContext(), "Make sure all fields are filled", Toast.LENGTH_LONG).show();
-
         }
-
 
         Toast.makeText(getApplicationContext(), "Creating event: " + title.getText().toString(), Toast.LENGTH_SHORT).show();
         event.saveInBackground(new SaveCallback() {
@@ -307,8 +276,6 @@ public class NewEventActivity extends AppCompatActivity implements GoogleApiClie
 
     }
 
-
-
     /////////////////////////////////////////////////////////////////////////
     ////////////////AUTOCOMPLETE GOOGLE PLACES API FUNCTIONS////////////////
     ////////////////////////////////////////////////////////////////////////
@@ -321,8 +288,6 @@ public class NewEventActivity extends AppCompatActivity implements GoogleApiClie
 
     private TextView mPlaceDetailsText;
     private String placeDetailsText;
-
-    private TextView mPlaceDetailsAttribution;
 
     private static final LatLngBounds BOUNDS_LINKOPING = new LatLngBounds(
             new LatLng(58.410807, 15.621372), new LatLng(58.587745, 16.192420));
@@ -350,8 +315,6 @@ public class NewEventActivity extends AppCompatActivity implements GoogleApiClie
                     .getPlaceById(mGoogleApiClient, placeId);
             placeResult.setResultCallback(mUpdatePlaceDetailsCallback);
 
-            Toast.makeText(getApplicationContext(), "Clicked: " + primaryText,
-                    Toast.LENGTH_SHORT).show();
             Log.i(TAG, "Called getPlaceById to get Place details for " + placeId);
         }
     };
@@ -376,17 +339,13 @@ public class NewEventActivity extends AppCompatActivity implements GoogleApiClie
             Log.i("AppInfo", place.getName() + place.getId() + place.getAddress() + place.getPhoneNumber() + place.getWebsiteUri() + " LATLNG: " + place.getLatLng());
             placeDetailsText = place.getName() + place.getId() + place.getAddress() + place.getPhoneNumber() + place.getWebsiteUri();
             // Format details of the place for display and show it in a TextView.
-            /*mPlaceDetailsText.setText(formatPlaceDetails(getResources(), place.getName(),
-                    place.getId(), place.getAddress(), place.getPhoneNumber(),
-                    place.getWebsiteUri()));*/
 
             // Display the third party attributions if set.
             final CharSequence thirdPartyAttribution = places.getAttributions();
             if (thirdPartyAttribution == null) {
-                //mPlaceDetailsAttribution.setVisibility(View.GONE);
+
             } else {
-                //mPlaceDetailsAttribution.setVisibility(View.VISIBLE);
-                //mPlaceDetailsAttribution.setText(Html.fromHtml(thirdPartyAttribution.toString()));
+
             }
 
             Log.i(TAG, placeDetailsText);
@@ -399,13 +358,8 @@ public class NewEventActivity extends AppCompatActivity implements GoogleApiClie
 
     private static Spanned formatPlaceDetails(Resources res, CharSequence name, String id,
                                               CharSequence address, CharSequence phoneNumber, Uri websiteUri) {
-        //Log.e(TAG, res.getString(R.string.place_details, name, id, address, phoneNumber,
-               // websiteUri));
 
-       // return Html.fromHtml(res.getString(R.string.place_details, name, id, address, phoneNumber,
-         //       websiteUri));
         return null;
-
     }
 
     /**

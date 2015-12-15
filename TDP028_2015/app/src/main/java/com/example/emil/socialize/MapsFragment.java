@@ -63,8 +63,6 @@ public class MapsFragment extends SupportMapFragment implements
 
         }
 
-        Toast.makeText(getActivity(), "MapsFragment:onCreate", Toast.LENGTH_SHORT).show();
-
         getMapAsync(this);
 
     }
@@ -97,6 +95,8 @@ public class MapsFragment extends SupportMapFragment implements
         // Set up mMap to handle different events
         setUpmMap();
         LatLng coord;
+
+        //Add a marker to mMap for each event
         for(Event event : events) {
 
             coord = new LatLng(event.latitude, event.longitude);
@@ -105,29 +105,13 @@ public class MapsFragment extends SupportMapFragment implements
                     .title(event.title)
                     .snippet(event.starts + " " + event.description));
 
+            //Add each marker and event to map, makes event easy to find when clicked
             markerEventMap.put(marker, event);
-           /* mMap.addMarker(new MarkerOptions()
-                    .position(coord)
-                    .title(event.title)
-                    .snippet(event.starts + " " + event.description)); */
 
         }
 
         GPSTracker gps = new GPSTracker(getContext());
-        // Add markers to map
-        /*LatLng coord;
 
-        for (Item item : markers) {
-            coord = new LatLng(item.latitude, item.longitude);
-            mMap.addMarker(new MarkerOptions()
-                    .position(coord)
-                    .title(item.category)
-                    .snippet(item.author + " " + item.description));
-        }*/
-
-
-        // TODO Get user position with the class GPSTracker
-        // Move the camera
         LatLng cameraPos = new LatLng(gps.getLatitude(), gps.getLongitude());
         mMap.moveCamera(CameraUpdateFactory.zoomTo(8));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(cameraPos));
@@ -149,7 +133,6 @@ public class MapsFragment extends SupportMapFragment implements
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
-                //Toast.makeText(getActivity(), "Clicked on info marker, id: " + marker.getId() , Toast.LENGTH_LONG).show();
                 Event event = markerEventMap.get(marker);
 
                 Intent intent = new Intent();
@@ -160,20 +143,6 @@ public class MapsFragment extends SupportMapFragment implements
             }
         });
 
-    }
-
-  /*  @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_maps, container, false);
-    }*/
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
     }
 
     @Override
@@ -213,18 +182,6 @@ public class MapsFragment extends SupportMapFragment implements
     public void onMarkerDragEnd(Marker marker) {
 
     }
-
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
 
     /**
      * This interface must be implemented by activities that contain this

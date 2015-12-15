@@ -1,6 +1,5 @@
 package com.example.emil.socialize;
 
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,7 +17,6 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,11 +54,9 @@ public class EventInfo extends AppCompatActivity {
 
             if (title != null) {
                 title.setText(event.title);
-                //title.setText((e.get("title")).toString());
             }
 
             if (description != null) {
-                //description.setText((e.get("description")).toString());
                 description.setText(event.description);
             }
 
@@ -68,7 +64,6 @@ public class EventInfo extends AppCompatActivity {
                 String adr;
                 try {
                     adr = event.address;
-                    //adr = e.get("address").toString();
                 } catch (Exception ee) {
                     adr = "No address availible";
                 }
@@ -90,8 +85,6 @@ public class EventInfo extends AppCompatActivity {
             }
 
             if (attenders != null) {
-                //int attending = (int) e.get(position).attenders;
-                //int maxAttending = (int) e.get("maxAttenders");
                 attenders.setText(event.attenders);
             }
 
@@ -176,10 +169,7 @@ public class EventInfo extends AppCompatActivity {
         query.whereEqualTo("objectId", eventId);
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> events, ParseException e) {
-                ArrayList<String> attenders;
                 if (e == null) {
-                    Log.d("events", "Retrieved " + events.size() + " events");
-                    //Log.d("events", "attenders includes: " + attenders.toString());
                     ParseObject p = events.get(0);
                     p.addUnique("attendingUsers", user);
                     p.increment("attenders");
@@ -220,9 +210,6 @@ public class EventInfo extends AppCompatActivity {
             onBackPressed();
             return true;
         }
-
-
-
 
         return super.onOptionsItemSelected(item);
     }
